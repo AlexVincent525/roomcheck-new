@@ -1,0 +1,42 @@
+{
+    "status": "success",
+    "total": 6,
+    "rows":[
+        {
+            "id": 90,
+            "room": "4#518",
+            "building": 4,
+            "edited": true
+        },
+        {
+            "id": 91,
+            "room": "4#519",
+            "building": 4,
+            "edited": true
+        },
+        {
+            "id": 92,
+            "room": "4#520",
+            "building": 4,
+            "edited": true
+        },
+        {
+            "id": 93,
+            "room": "4#521",
+            "building": 4,
+            "edited": true
+        },
+        {
+            "id": 94,
+            "room": "4#522",
+            "building": 4,
+            "edited": false
+        },
+        {
+            "id": 95,
+            "room": "4#523",
+            "building": 4,
+            "edited": false
+        }
+    ]
+}

@@ -1,0 +1,6 @@
+{
+    "status": "success",
+    "type": "special",
+    "users": ["001","002"],
+    "special": 1
+}

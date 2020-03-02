@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="author" content="av@alexv525.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>副部权限配置</title>
+    <style>
+        body, input, span {
+            font-family: -apple-system, "PingFang SC", "Microsoft Yahei UI", "Segoe UI", sans-serif, Arial;
+        }
+        table {
+            border: 1px solid #d7d7d7;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        td, th {
+            border-left: 1px solid #d7d7d7;
+            border-top: 1px solid #d7d7d7;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <h3>@副部 权限配置</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    一级
+                </th>
+                <th>
+                    二级
+                </th>
+                <th>
+                    权限详情
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>一级检查夹 (Level One Check Set)</span>
+                    </label>
+                </td>
+                <td></td>
+                <td>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>查看</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>添加</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>删除</span>
+                    </label>
+                </td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>二级检查夹 (Level Two Check Set)</span>
+                    </label>
+                </td>
+                <td></td>
+                <td>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>查看</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>添加</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>删除</span>
+                    </label>
+                </td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td rowspan="2">
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>检查 (Task)</span>
+                    </label>
+                </td>
+                <td></td>
+                <td>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>查看</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>编辑</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>添加</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>删除</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>状态切换</span>
+                    </label>
+                </td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>楼栋 (Building)</span>
+                    </label>
+                </td>
+                <td></td>
+                <td>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>查看</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false">
+                        <span>编辑</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false">
+                        <span>添加</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false">
+                        <span>删除</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false">
+                        <span>激活</span>
+                    </label>
+                </td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>宿舍 (Room)</span>
+                    </label>
+                </td>
+                <td></td>
+                <td>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>查看</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false">
+                        <span>编辑</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false">
+                        <span>添加</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false">
+                        <span>删除</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false">
+                        <span>激活</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false">
+                        <span>导入</span>
+                    </label>
+                </td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>项目 (Item)</span>
+                    </label>
+                </td>
+                <td></td>
+                <td>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>查看</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false">
+                        <span>编辑</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false">
+                        <span>添加</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false">
+                        <span>删除</span>
+                    </label>
+                </td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td rowspan="5">
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>用户 (User)</span>
+                    </label>
+                </td>
+                <td>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>自己 (Belong to self)</span>
+                    </label>
+                </td>
+                <td>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>查看</span>
+                    </label>
+                    <label>
+                        <span>
+                            <span>
+                                <span>[</span>
+                                <span>
+                                    <label>
+                                        <input type="checkbox" onclick="return false" checked>
+                                        <span>编辑学号</span>
+                                    </label>
+                                </span>
+                                <span>
+                                    <label>
+                                        <input type="checkbox" onclick="return false" checked>
+                                        <span>编辑姓名</span>
+                                    </label>
+                                </span>
+                                <span>
+                                    <label>
+                                        <input type="checkbox" onclick="return false" checked>
+                                        <span>编辑邮箱</span>
+                                    </label>
+                                </span>
+                                <span>]</span>
+                                <br>
+                            </span>
+                        </span>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>干事 (Members)</span>
+                    </label>
+                </td>
+                <td>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>查看</span>
+                    </label>
+                    <label>
+                        <span>
+                            <span>
+                                <span>[</span>
+                                <span>
+                                    <label>
+                                        <input type="checkbox" onclick="return false" checked>
+                                        <span>编辑学号</span>
+                                    </label>
+                                </span>
+                                <span>
+                                    <label>
+                                        <input type="checkbox" onclick="return false" checked>
+                                        <span>编辑姓名</span>
+                                    </label>
+                                </span>
+                                <span>
+                                    <label>
+                                        <input type="checkbox" onclick="return false" checked>
+                                        <span>编辑邮箱</span>
+                                    </label>
+                                </span>
+                                <span>]</span>
+                                <br>
+                            </span>
+                        </span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>添加</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>删除</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>激活</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>导入</span>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>副部 (Preleaders)</span>
+                    </label>
+                </td>
+                <td>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>查看</span>
+                    </label>
+                    <label>
+                        <span>
+                            <span>
+                                <span>[</span>
+                                <span>
+                                    <label>
+                                        <input type="checkbox" onclick="return false">
+                                        <span>编辑学号</span>
+                                    </label>
+                                </span>
+                                <span>
+                                    <label>
+                                        <input type="checkbox" onclick="return false">
+                                        <span>编辑姓名</span>
+                                    </label>
+                                </span>
+                                <span>
+                                    <label>
+                                        <input type="checkbox" onclick="return false">
+                                        <span>编辑邮箱</span>
+                                    </label>
+                                </span>
+                                <span>]</span>
+                                <br>
+                            </span>
+                        </span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false">
+                        <span>添加</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false">
+                        <span>删除</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false">
+                        <span>激活</span>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>
+                        <input type="checkbox" onclick="return false">
+                        <span>部长 (Leader)</span>
+                    </label>
+                </td>
+                <td>
+                    <label>
+                        <input type="checkbox" onclick="return false">
+                        <span>查看</span>
+                    </label>
+                    <label>
+                        <span>
+                            <span>
+                                <span>[</span>
+                                <span>
+                                    <label>
+                                        <input type="checkbox" onclick="return false">
+                                        <span>编辑学号</span>
+                                    </label>
+                                </span>
+                                <span>
+                                    <label>
+                                        <input type="checkbox" onclick="return false">
+                                        <span>编辑姓名</span>
+                                    </label>
+                                </span>
+                                <span>
+                                    <label>
+                                        <input type="checkbox" onclick="return false">
+                                        <span>编辑邮箱</span>
+                                    </label>
+                                </span>
+                                <span>]</span>
+                                <br>
+                            </span>
+                        </span>
+                    </label>
+                </td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td rowspan="2">
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>系统 (System)</span>
+                    </label>
+                </td>
+                <td>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>公告 (Announce)</span>
+                    </label>
+                </td>
+                <td>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>查看</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>编辑</span>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>时间线 (Timeline)</span>
+                    </label>
+                </td>
+                <td>
+                    <label>
+                        <input type="checkbox" onclick="return false" checked>
+                        <span>查看</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false">
+                        <span>编辑</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false">
+                        <span>添加</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" onclick="return false">
+                        <span>删除</span>
+                    </label>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,61 @@
+{
+    "status": "success",
+    "type": "normal",
+    "users": ["001","002"],
+    "items": [
+        {
+            "id": 1,
+            "name": "窗",
+            "total": "4",
+            "point": "0"
+        },
+        {
+            "id": 2,
+            "name": "门",
+            "total": "3",
+            "point": "0"
+        },
+        {
+            "id": 3,
+            "name": "床铺",
+            "total": "30",
+            "point": "0"
+        },
+        {
+            "id": 4,
+            "name": "地板",
+            "total": "10",
+            "point": "0"
+        },
+        {
+            "id": 5,
+            "name": "桌面",
+            "total": "12",
+            "point": "0"
+        },
+        {
+            "id": 6,
+            "name": "鞋子摆放",
+            "total": "5",
+            "point": "0"
+        },
+        {
+            "id": 7,
+            "name": "书架",
+            "total": "18",
+            "point": "0"
+        },
+        {
+            "id": 8,
+            "name": "天花板",
+            "total": "2",
+            "point": "0"
+        },
+        {
+            "id": 9,
+            "name": "侧书架",
+            "total": "16",
+            "point": "0"
+        }
+    ]
+}

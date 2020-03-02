@@ -1,0 +1,31 @@
+@charset "utf-8";
+/*
+ * Author: Alex Vincent
+ * 2018-01-20
+*/
+
+a, p, span, input, button {
+    font-family: "PingFang SC", "Microsoft Yahei UI", "Segoe UI", sans-serif, Arial;
+    transition: all 0.15s linear;
+    -o-transition: all 0.15s linear;
+    -moz-transition: all 0.15s linear;
+    -webkit-transition: all 0.15s linear;
+}
+a, a:hover, a:active, a:visited, a:link, a:focus {
+    text-decoration: none;
+}
+.swal2-modal {
+    font-family: "PingFang SC", "Microsoft Yahei UI", "Segoe UI", sans-serif, Arial;
+}
+.login-logo {
+    line-height: 40px;
+}
+.login-logo a {
+    color: #fff;
+}
+.error,
+.error:focus {
+    background-color: #fee;
+    border-color: #f99;
+    transition: all 0.2s ease;
+}

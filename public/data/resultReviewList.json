@@ -1,0 +1,30 @@
+{
+    "status": "success",
+    "total": 5,
+    "rows": [
+        {
+            "id": 41,
+            "room": "13#518",
+            "building": 13,
+            "detail": {
+                "is_special": true,
+                "special_result": "未开门",
+                "normal_result": []
+            },
+            "user": "001",
+            "review": false
+        },
+        {
+            "id": 42,
+            "room": "13#518",
+            "building": 13,
+            "detail": {
+                "is_special": false,
+                "special_result": null,
+                "normal_result": [9,9,9,9,9,9,9,9,9,9]
+            },
+            "user": "002",
+            "review": false
+        }
+    ]
+}

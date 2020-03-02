@@ -1,0 +1,299 @@
+(function ($) {
+    "use strict";
+    const $userTable = $("#userTable"),
+          $userModal = $("#userModal");
+
+    const $userActive   = $userTable.parent().parent().parent().find("button[name=active]");
+          //$userDelete   = $userTable.parent().parent().parent().find("button[name=delete]");
+
+    const $userAddSave  = $userModal.find("button[data-for=addSave]");
+
+    $(document).ready(function() {
+        $viceLeaderAction.viceLeaderList().catch();
+    });
+
+    $userTable
+        .on("load-success.bs.table", function() {
+            $userActive
+                .prop("disabled", true)
+                .on("click", function() {
+                    $viceLeaderAction.preActiveViceLeader();
+                });
+            /*$userDelete
+                .prop("disabled", true)
+                .on("click", function() {
+                    $viceLeaderAction.preDeleteViceLeader();
+                });*/
+            $userAddSave.on("click", function() {
+                if (!isEmpty("userModal")) $viceLeaderAction.preAddViceLeader();
+            });
+        })
+        .on("check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table", function() {
+            $userActive.prop('disabled', !$userTable.bootstrapTable('getSelections').length);
+            /*$userDelete.prop('disabled', !$userTable.bootstrapTable('getSelections').length);*/
+        });
+
+    $userModal.on("hide.bs.modal", function() {
+        const $input = $userModal.find("input");
+        $input.val(null);
+        $viceLeaderAction.viceLeaderList().catch();
+    });
+
+    const $viceLeaderAction = new function() {
+        const _this = this;
+        _this.viceLeaderList = () => {
+            return new Promise((resolve, reject) => {
+                $userTable.bootstrapTable("destroy");
+                $userTable.bootstrapTable({
+                    url: "/user-management/vice-leader-management/ajax/vice-leader-list",
+                    method: "get",
+                    dataType: "json",
+                    pageList: [10, 20, 50],
+                    columns: [{
+                        checkbox: true
+                    }, {
+                        field: "id",
+                        title: "#",
+                        sortable: true
+                    }, {
+                        field: "name",
+                        title: "姓名",
+                        editable: _this.editableFormatter("name")
+                    }, {
+                        field: "student_id",
+                        title: "学号",
+                        sortable: true,
+                        editable: _this.editableFormatter("student_id")
+                    }, {
+                        field: "email",
+                        title: "邮箱",
+                        editable: _this.editableFormatter("email")
+                    }, {
+                        field: "active",
+                        title: "激活状态",
+                        class: "status",
+                        formatter: (value, row) => {
+                            if (row['active']) {
+                                value = '<span class="label label-success">已激活</span>';
+                            } else {
+                                value = '<span class="label label-danger">未激活</span>';
+                            }
+                            return value;
+                        }
+                    }],
+                    queryParamsType: "",
+                    queryParams: (params) => ({
+                        limit: params.pageSize,
+                        page: params.pageNumber
+                    }),
+                    onLoadSuccess: (response) => {
+                        /*** 判断是否返回正确格式数据 ***/
+                        if (response['total'] !== undefined) {
+                            resolve();
+                        } else {
+                            reject();
+                        }
+                    },
+                    onLoadError: (status) => { /*** 错误处理，引导进行重载 ***/
+                        $swal.errorWithRefresh()
+                            .then(
+                                () => _this.viceLeaderList().catch(),
+                                () => {}
+                            );
+                        reject(status);
+                    }
+                });
+            })
+        };
+        _this.preAddViceLeader = () => {
+            const $userName   = $("#userName"),
+                  $userEmail  = $("#userEmail"),
+                  $userNumber = $("#userNumber");
+            const name       = $userName.val(),
+                  email      = $userEmail.val(),
+                  student_id = $userNumber.val();
+            const numReg   = /^\d{4}2[0-9]03\d{4}$/,
+                  nameReg  = /[\u4E00-\u9FA5]{2,5}(?:·[\u4E00-\u9FA5]{2,5})*/,
+                  emailReg = /^\d{5,12}@[qQ][qQ]\.com$/;
+            if (numReg.test(student_id) && nameReg.test(name) && emailReg.test(email)) {
+                $swal.question("添加副部", "确认要添加该副部吗？")
+                    .then(() => {
+                        const data = {name, email, student_id};
+                        this.addViceLeader(data)
+                            .done((response) => _this.addViceLeaderHandler(response).catch())
+                            .fail((xhr, status) => $swal.errorWithStatus("添加副部失败", xhr, status));
+                    }, () => {}
+                );
+            } else {
+                $swal.error("请确认填写正确");
+            }
+        };
+        _this.addViceLeader = (data) => $.postJSON("/user-management/vice-leader-management/ajax/add-vice-leader", data);
+        _this.addViceLeaderHandler = (response) => {
+            return new Promise((resolve, reject) => {
+                if (response['status'] === 'success') {
+                    resolve();
+                    $swal.success("添加副部成功")
+                        .then(
+                            /* Event: 触发 $userModal 隐藏 */
+                            () => $userModal.modal('hide'),
+                            () => $userModal.modal('hide')
+                        );
+                } else {
+                    reject();
+                    $swal.error("添加副部失败");
+                }
+            });
+        };
+        _this.preActiveViceLeader = () => {
+            $swal.question("激活副部", "确认要更改选中副部激活状态吗？")
+                .then(() => {
+                    let users = [];
+                    const rows = $userTable.bootstrapTable("getSelections");
+                    $.each(rows, (i, row) => users.push(row['id']));
+                    const data = {users};
+                    this.activeViceLeader(data)
+                        .done((response) => _this.activeViceLeaderHandler(response).catch())
+                        .fail((xhr, status) => $swal.errorWithStatus("激活状态更改失败", xhr, status))
+                    }, () => {}
+                );
+        };
+        _this.activeViceLeader = (data) => $.postJSON("/user-management/vice-leader-management/ajax/active-vice-leader", data);
+        _this.activeViceLeaderHandler = (response) => {
+            return new Promise((resolve, reject) => {
+                if (response['status'] === 'success') {
+                    resolve();
+                    $swal.success("激活状态更改成功")
+                        .then(
+                            /* Event: 触发 $userModal 隐藏 */
+                            () => _this.viceLeaderList().catch(),
+                            () => _this.viceLeaderList().catch()
+                        );
+                } else {
+                    reject();
+                    $swal.error("激活副部失败");
+                }
+            });
+        };
+        /*_this.preDeleteViceLeader = () => {
+            $swal.question("删除副部", "确认要删除选中副部吗？")
+                .then(() => {
+                    let users = [];
+                    const rows = $userTable.bootstrapTable("getSelections");
+                    $.each(rows, (i, row) => users.push(row['id']));
+                    const data = {users};
+                    this.deleteViceLeader(data)
+                        .done((response) => _this.deleteViceLeaderHandler(response).catch())
+                        .fail((xhr, status) => $swal.errorWithStatus("删除副部失败", xhr, status))
+                    }, () => {}
+                );
+        };
+        _this.deleteViceLeader = (data) => $.postJSON("/api/user/delete-viceLeader", data);
+        _this.deleteViceLeaderHandler = (response) => {
+            return new Promise((resolve, reject) => {
+                if (response['status'] === 'success') {
+                    resolve();
+                    $swal.success("删除副部成功")
+                        .then(
+                            // Event: 触发 $userModal 隐藏
+                            () => _this.viceLeaderList().catch(),
+                            () => _this.viceLeaderList().catch()
+                        );
+                } else {
+                    reject();
+                    $swal.error("删除副部失败")
+                }
+            });
+        };*/
+        _this.editableFormatter = (field) => {
+            const $editable = {
+                name: booleanConv($("[data-editable-field='name']").attr("data-editable")),
+                email: booleanConv($("[data-editable-field='email']").attr("data-editable")),
+                student_id: booleanConv($("[data-editable-field='student_id']").attr("data-editable"))
+            };
+            if ($editable[field]) {
+                return {
+                    validate: function(value) {return _this.validate(value, this, field);}
+                };
+            } else {
+                return false;
+            }
+        };
+        _this.validate = (value, object, field) => {
+            const fields = {
+                name: {
+                    reg: /[\u4E00-\u9FA5]{2,5}(?:·[\u4E00-\u9FA5]{2,5})*/,
+                    msg: "姓名必须为中文",
+                    name: "姓名"
+                },
+                email: {
+                    reg: /^\d{5,12}@[qQ][qQ]\.com$/,
+                    msg: "邮箱需满足5-12位qq邮箱格式",
+                    name: "邮箱"
+                },
+                student_id: {
+                    reg: /^\d{4}2[0-9]03\d{4}$/,
+                    msg: "学号需要满足yyyy2*03****格式",
+                    name: "学号"
+                }
+            };
+            const bsdata = $userTable.bootstrapTable("getData"),
+                  index  = $(object).parents("tr").data("index");
+            const ori_value = bsdata[index][field];
+            const $value = $.trim(value);
+            if (!$value) {
+                return "未填写";
+            } else if ($value === ori_value) {
+                return "内容未更改";
+            } else if (!fields[field]["reg"].test($value)) {
+                return fields[field]["msg"];
+            } else {
+                const id = bsdata[index]["id"];
+                const data = {id, field, value:$value};
+                _this.preEditViceLeaderProfile(data, field);
+            }
+        };
+        this.preEditViceLeaderProfile = (data, type) => {
+            switch (type) {
+                case "name":
+                    type = "姓名";
+                    break;
+                case "student_id":
+                    type = "学号";
+                    break;
+                case "email":
+                    type = "邮箱";
+                    break;
+            }
+            $swal.question(`更改${type}`, `确定要更改${type}吗？`)
+                .then(
+                    () => _this.editViceLeaderProfile(data),
+                    () => _this.viceLeaderList().catch()
+                );
+        };
+        _this.editViceLeaderProfile = (data) => {
+            $.patchJSON("/api/user/edit-viceLeader-profile", data)
+                .done((response) => _this.editViceLeaderProfileHandler(response).catch())
+                .fail((xhr, status) => $swal.errorWithStatus("更新信息失败", xhr, status).then(
+                    () => _this.viceLeaderList().catch(),
+                    () => _this.viceLeaderList().catch()
+                ));
+        };
+        _this.editViceLeaderProfileHandler = (response) => {
+            return new Promise((resolve, reject) => {
+                if (response['status'] === 'success') {
+                    resolve();
+                    $swal.success("更新信息成功")
+                        .then( /* Event: 触发 $userModal 隐藏 */
+                            () => _this.viceLeaderList().catch(),
+                            () => _this.viceLeaderList().catch()
+                        );
+                } else {
+                    reject();
+                    $swal.error("更新信息失败");
+                }
+            });
+        };
+    };
+
+})(jQuery);

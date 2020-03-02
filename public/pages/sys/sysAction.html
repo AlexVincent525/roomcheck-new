@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <title>系统设置 - 集大水院自律会</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="author" content="av@alexv525.com">
+        <meta name="description" content="宿舍成绩后台管理">
+        <meta name="keywords" content="宿舍成绩,集大,水院,自律会">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <!-- Chrome Theme Color -->
+        <meta name="theme-color" content="#367fa9">
+        <!-- Start Favicon Part -->
+        <meta name="msapplication-TileImage" content="/favicon.ico">
+        <link rel="bookmark" href="/favicon.ico">
+        <link rel="shortcut icon" href="/favicon.ico">
+        <link rel="icon" href="/favicon.ico" sizes="32x32">
+        <link rel="icon" href="/favicon.ico" sizes="192x192">
+        <link rel="apple-touch-icon-precomposed" href="/favicon.ico">
+        <!-- End Favicon Part -->
+        <!-- Start Public StyleSheet -->
+        <link rel="stylesheet" href="/assets/admin/vendor/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/admin/vendor/font-awesome/font-awesome.min.css">
+        <link rel="stylesheet" href="/assets/admin/vendor/pace/pace.min.css">
+        <link rel="stylesheet" href="/assets/admin/css/AdminLTE.min.css">
+        <link rel="stylesheet" href="/assets/admin/css/skins/_all-skins.min.css">
+        <link rel="stylesheet" href="/assets/admin/vendor/sweetalert2/sweetalert2.min.css">
+        <!-- End Public StyleSheet -->
+        <!-- Start Custom StyleSheet -->
+        <link rel="stylesheet" href="/assets/admin/vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
+        <link rel="stylesheet" href="/assets/admin/vendor/select2/css/select2.min.css">
+        <!-- End Custom StyleSheet -->
+        <link rel="stylesheet" href="/assets/admin/css/main.css">
+        <!-- CSRF Token -->
+        <meta name="csrf_token" content="{{ csrf_token() }}">
+    </head>
+    <body class="hold-transition skin-blue sidebar-mini">
+        <div class="wrapper">
+            <header class="main-header">
+                <a href="/admin.html" class="logo">
+                    <span class="logo-mini">
+                        <img src="/favicon.ico" width="30">
+                    </span>
+                    <span class="logo-lg">
+                        <b>宿舍成绩</b> 后台管理
+                    </span>
+                </a>
+                <nav class="navbar navbar-static-top">
+                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                        <span class="sr-only"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <span class="navbar-broadcast">通知</span>
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown user user-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-user"></i>
+                                    <span class="hidden-xs username">username</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="user-header">
+                                        <i class="fa fa-user fa-5x"></i>
+                                        <p class="username">username</p>
+                                    </li>
+                                    <li class="user-footer">
+                                        <div class="pull-left">
+                                            <a href="/pages/user/changeProfile.html" class="btn btn-default btn-flat" tabindex="0">更改信息</a>
+                                        </div>
+                                        <div class="pull-right">
+                                            <a id="logout" class="btn btn-default btn-flat">注销</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <aside class="main-sidebar">
+                <section class="sidebar">
+                    <ul class="sidebar-menu">
+                        <li class="header">导览</li>
+                        <li>
+                            <a href="/admin.html">
+                                <i class="fa fa-circle-o" aria-hidden="true"></i>
+                                <span>总览</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/pages/entering/enteringResult.html">
+                                <i class="fa fa-pencil-square" aria-hidden="true"></i>
+                                <span>宿舍检查</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                                <span>检查管理</span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a href="/pages/check/createCheck.html">
+                                        <i class="fa fa-bullhorn" aria-hidden="true"></i>
+                                        <span>检查创建</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/pages/check/checkAssign.html">
+                                        <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
+                                        <span>检查分配</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-building" aria-hidden="true"></i>
+                                <span>基础管理</span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a href="/pages/basic/roomManage.html">
+                                        <i class="fa fa-home" aria-hidden="true"></i>
+                                        <span>宿舍管理</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/pages/basic/buildingManage.html">
+                                        <i class="fa fa-building-o" aria-hidden="true"></i>
+                                        <span>楼栋管理</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/pages/basic/itemManage.html">
+                                        <i class="fa fa-cubes" aria-hidden="true"></i>
+                                        <span>项目管理</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-table" aria-hidden="true"></i>
+                                <span>成绩管理</span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a href="/pages/result/resultReview.html">
+                                        <i class="fa fa-balance-scale" aria-hidden="true"></i>
+                                        <span>成绩审核</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/pages/result/resultOperate.html">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                        <span>成绩处理</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <span>用户管理</span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a href="/pages/user/memberManage.html">
+                                        <i class="fa fa-users" aria-hidden="true"></i>
+                                        <span>干事管理</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/pages/user/viceLeaderManage.html">
+                                        <i class="fa fa-users" aria-hidden="true"></i>
+                                        <span>副部管理</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/pages/user/changeProfile.html">
+                                        <i class="fa fa-key" aria-hidden="true"></i>
+                                        <span>信息修改</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="active">
+                            <a href="/pages/sys/sysAction.html">
+                                <i class="fa fa-gear" aria-hidden="true"></i>
+                                <span>系统操作</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+            </aside>
+            <div class="content-wrapper" id="main">
+                <section class="content-header">
+                    <h1>
+                        系统设置
+                        <small>Settings to system.</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="/admin.html" class="forward">
+                                <i class="fa fa-dashboard" aria-hidden="true"></i> 主页
+                            </a>
+                        </li>
+                        <li class="active">系统设置</li>
+                    </ol>
+                </section>
+                <section class="content">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="box box-info">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">发布公告</h3>
+                                </div>
+                                <div class="box-body">
+                                    <div class="btn-toolbar" data-role="editor-toolbar" data-target="#annouceEditor">
+                                        <div class="btn-group">
+                                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="字体大小">
+                                                <i class="fa fa-text-height"></i>&nbsp;<b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a data-edit="fontSize 5" class="fs-Five">大号</a></li>
+                                                <li><a data-edit="fontSize 3" class="fs-Three">中号</a></li>
+                                                <li><a data-edit="fontSize 1" class="fs-One">小号</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="btn-group">
+                                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="文字颜色">
+                                                <i class="fa fa-font"></i>&nbsp;<b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                &nbsp;&nbsp;&nbsp;文字颜色:
+                                                <li><a data-edit="foreColor #000000">黑</a></li>
+                                                <li><a data-edit="foreColor #FF0000">红</a></li>
+                                                <li><a data-edit="foreColor #FF7F00">橘</a></li>
+                                                <li><a data-edit="foreColor #FFFF00">黄</a></li>
+                                                <li><a data-edit="foreColor #0000FF">蓝</a></li>
+                                                <li><a data-edit="foreColor #30AD23">绿</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="btn-group">
+                                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="文字高亮色">
+                                                <i class="fa fa-paint-brush"></i>&nbsp;<b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                &nbsp;&nbsp;&nbsp;文字高亮色:
+                                                <li><a data-edit="backColor #FF0000">红</a></li>
+                                                <li><a data-edit="backColor #FF7F00">橘</a></li>
+                                                <li><a data-edit="backColor #FFFF00">黄</a></li>
+                                                <li><a data-edit="backColor #00FFFF">蓝</a></li>
+                                                <li><a data-edit="backColor #00FF00">绿</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="btn-group">
+                                            <a class="btn btn-default" data-edit="bold" title="粗体 (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></a>
+                                            <a class="btn btn-default" data-edit="italic" title="斜体 (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
+                                            <a class="btn btn-default" data-edit="strikethrough" title="删除线"><i class="fa fa-strikethrough"></i></a>
+                                            <a class="btn btn-default" data-edit="underline" title="下划线 (Ctrl/Cmd+U)"><i class="fa fa-underline"></i></a>
+                                        </div>
+                                        <div class="btn-group">
+                                            <a class="btn btn-default" data-edit="justifyleft" title="左对齐 (Ctrl/Cmd+L)"><i class="fa fa-align-left"></i></a>
+                                            <a class="btn btn-default" data-edit="justifycenter" title="居中对齐 (Ctrl/Cmd+E)"><i class="fa fa-align-center"></i></a>
+                                            <a class="btn btn-default" data-edit="justifyright" title="右对齐 (Ctrl/Cmd+R)"><i class="fa fa-align-right"></i></a>
+                                            <a class="btn btn-default" data-edit="justifyfull" title="两端对齐 (Ctrl/Cmd+J)"><i class="fa fa-align-justify"></i></a>
+                                        </div>
+                                        <div class="btn-group">
+                                            <a class="btn btn-default" data-edit="insertunorderedlist" title="无序列表"><i class="fa fa-list-ul"></i></a>
+                                            <a class="btn btn-default" data-edit="insertorderedlist" title="有序列表"><i class="fa fa-list-ol"></i></a>
+                                        </div>
+                                        <div class="btn-group">
+                                            <a class="btn btn-default" data-edit="undo" title="撤销 (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></a>
+                                            <a class="btn btn-default" data-edit="redo" title="还原 (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>
+                                        </div>
+                                    </div>
+                                    <div id="annouceEditor" contenteditable="true" class="lead"></div>
+                                </div>
+                                <div class="box-footer with-border">
+                                    <button id="annoucePublish" class="btn btn-success pull-right">添加</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div id="timelineEditBox" class="box box-info">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">时间线</h3>
+                                </div>
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label>当前时间线</label>
+                                        <select id="timelineEditContent" class="form-control" title="选择时间线类型">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="box-footer with-border">
+                                    <button id="addTimeline"
+                                            class="btn btn-success pull-right"
+                                            data-toggle="modal"
+                                            data-target="#timelineModal"
+                                    >添加
+                                    </button>
+                                    <button
+                                            id="editTimeline"
+                                            class="btn btn-warning pull-right"
+                                            data-toggle="modal"
+                                            data-target="#timelineModal"
+                                    >修改
+                                    </button>
+                                    <button
+                                            id="deleteTimeline"
+                                            class="btn btn-danger pull-right"
+                                    >删除
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="box box-info">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">系统操作</h3>
+                                </div>
+                                <div class="box-body">
+                                    <button class="btn btn-block btn-danger"
+                                            name="resultBackup">
+                                        成绩归档 (转移至旧库并清空数据)
+                                    </button>
+                                    <button class="btn btn-block btn-warning"
+                                            name="changeLeader">
+                                        权限转让 (换届)
+                                    </button>
+                                    <button class="btn btn-block btn-success"
+                                            name="receivePermission">
+                                        权限接收 (换届)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="modal fade" id="timelineModal" tabindex="-1" data-keyboard="true" aria-labelledby="timelineModal" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="关闭">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                <h4 class="modal-title text-center" id="timelineModal-title">时间线</h4>
+                            </div>
+                            <div class="modal-body" id="timelineModal-body">
+                                <div class="form-group">
+                                    <label class="required">选择类型</label>
+                                    <select id="timelineType" class="form-control" title="选择时间线类型">
+                                        <option value="fix">修复</option>
+                                        <option value="error">问题</option>
+                                        <option value="enhance">优化</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="required">选择时间</label>
+                                    <div class="input-group date" style="width:100%">
+                                        <input type="text" id="timelineTime" class="form-control datepicker require" title="时间线时间" readonly>
+                                        <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="required">输入内容</label>
+                                    <input type="text" id="timelineContent" class="form-control require" title="时间线内容">
+                                </div>
+                            </div>
+                            <div class="modal-footer" id="timelineModal-footer">
+                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-success pull-right" data-for="saveTimeline">保存</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="sysModal" tabindex="-1" data-keyboard="true" aria-labelledby="sysModal" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="关闭">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                <h4 class="modal-title text-center" id="sysModal-title">权限转让</h4>
+                            </div>
+                            <div class="modal-body" id="sysModal-body">
+                                <div class="form-group">
+                                    <label for="getToken">将输入框的Token复制给权限接收者</label>
+                                    <input type="text" class="form-control" id="getToken">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="sysModal2" tabindex="-1" data-keyboard="true" aria-labelledby="sysModal2" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="关闭">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                <h4 class="modal-title text-center" id="sysModal2-title">权限转让</h4>
+                            </div>
+                            <div class="modal-body" id="sysModal2-body">
+                                <div class="form-group">
+                                    <label for="setToken">在此输入Token以获取权限</label>
+                                    <input type="text" class="form-control require" id="setToken">
+                                </div>
+                            </div>
+                            <div class="modal-footer" id="sysModal2-footer">
+                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-success pull-right" data-for="verify">验证</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="main-footer"></footer>
+
+            <aside class="control-sidebar control-sidebar-dark">
+                <div class="tab-content">
+                    <div id="control-sidebar-theme-demo-options-tab" class="tab-pane active">
+                        <h4 class="control-sidebar-heading">更改配色
+                            <small>Change Your Skin.</small>
+                        </h4>
+                        <ul class="list-unstyled clearfix">
+                            <li>
+                                <a data-skin="skin-blue" class="clearfix full-opacity-hover">
+                                    <span style="background: #367fa9;"></span>
+                                    <span class="bg-light-blue"></span>
+                                    <span style="background: #222d32;"></span>
+                                    <span style="background: #f4f5f7;"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-skin="skin-black" class="clearfix full-opacity-hover">
+                                    <span style="background: #fefefe;"></span>
+                                    <span style="background: #fefefe;"></span>
+                                    <span style="background: #222;"></span>
+                                    <span style="background: #f4f5f7;"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-skin="skin-purple" class="clearfix full-opacity-hover">
+                                    <span class="bg-purple-active"></span>
+                                    <span class="bg-purple"></span>
+                                    <span style="background: #222d32;"></span>
+                                    <span style="background: #f4f5f7;"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-skin="skin-green" class="clearfix full-opacity-hover">
+                                    <span class="bg-green-active"></span>
+                                    <span class="bg-green"></span>
+                                    <span style="background: #222d32;"></span>
+                                    <span style="background: #f4f5f7;"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-skin="skin-red" class="clearfix full-opacity-hover">
+                                    <span class="bg-red-active"></span>
+                                    <span class="bg-red"></span>
+                                    <span style="background: #222d32;"></span>
+                                    <span style="background: #f4f5f7;"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-skin="skin-yellow" class="clearfix full-opacity-hover">
+                                    <span class="bg-yellow-active"></span>
+                                    <span class="bg-yellow"></span>
+                                    <span style="background: #222d32;"></span>
+                                    <span style="background: #f4f5f7;"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-skin="skin-blue-light" class="clearfix full-opacity-hover">
+                                    <span style="background: #367fa9;"></span>
+                                    <span class="bg-light-blue"></span>
+                                    <span style="background: #f9fafc;"></span>
+                                    <span style="background: #f4f5f7;"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-skin="skin-black-light" class="clearfix full-opacity-hover">
+                                    <span style="background: #fefefe;"></span>
+                                    <span style="background: #fefefe;"></span>
+                                    <span style="background: #f9fafc;"></span>
+                                    <span style="background: #f4f5f7;"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-skin="skin-purple-light" class="clearfix full-opacity-hover">
+                                    <span class="bg-purple-active"></span>
+                                    <span class="bg-purple"></span>
+                                    <span style="background: #f9fafc;"></span>
+                                    <span style="background: #f4f5f7;"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-skin="skin-green-light" class="clearfix full-opacity-hover">
+                                    <span class="bg-green-active"></span>
+                                    <span class="bg-green"></span>
+                                    <span style="background: #f9fafc;"></span>
+                                    <span style="background: #f4f5f7;"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-skin="skin-red-light" class="clearfix full-opacity-hover">
+                                    <span class="bg-red-active"></span>
+                                    <span class="bg-red" ></span>
+                                    <span style="background: #f9fafc;"></span>
+                                    <span style="background: #f4f5f7;"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-skin="skin-yellow-light" class="clearfix full-opacity-hover">
+                                    <span class="bg-yellow-active"></span>
+                                    <span class="bg-yellow"></span>
+                                    <span style="background: #f9fafc;"></span>
+                                    <span style="background: #f4f5f7;"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+            <div class="control-sidebar-bg"></div>
+        </div>
+        <!-- Start Public Script -->
+        <script src="/assets/admin/js/uaJudge.js"></script>
+        <script src="/assets/admin/vendor/jQuery/jquery-3.2.1.min.js"></script>
+        <script src="/assets/admin/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/assets/admin/vendor/pace/pace.min.js"></script>
+        <script src="/assets/admin/vendor/sweetalert2/sweetalert2.js"></script>
+        <script src="/assets/admin/js/app.js"></script>
+        <script src="/assets/admin/js/common.js"></script>
+        <!-- End Public Script -->
+
+        <!-- Start Custom Script -->
+        <script src="/assets/admin/vendor/select2/js/select2.min.js"></script>
+        <script src="/assets/admin/vendor/moment/moment.min.js"></script>
+        <script src="/assets/admin/vendor/moment/locale/zh-cn.js"></script>
+        <script src="/assets/admin/vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="/assets/admin/vendor/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+        <script src="/assets/admin/vendor/bootstrap-wysiwyg/bootstrap-wysiwyg.min.js"></script>
+        <script src="/assets/admin/vendor/jQuery-hotkeys/jquery.hotkeys.js"></script>
+        <script src="/pages/sys/sysAction.js"></script>
+        <!-- End Custom Script -->
+        
+    </body>
+</html>

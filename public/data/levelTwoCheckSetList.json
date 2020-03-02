@@ -1,0 +1,62 @@
+{
+    "status": "success",
+    "total": 8,
+    "rows": [
+        {
+            "id": 21,
+            "room": "518",
+            "building": 13,
+            "assigned": true,
+            "users": ["001", "002"]
+        },
+        {
+            "id": 22,
+            "room": "519",
+            "building": 13,
+            "assigned": true,
+            "users": ["001", "002"]
+        },
+        {
+            "id": 23,
+            "room": "520",
+            "building": 13,
+            "assigned": true,
+            "users": ["001", "002"]
+        },
+        {
+            "id": 24,
+            "room": "521",
+            "building": 13,
+            "assigned": true,
+            "users": ["001", "002"]
+        },
+        {
+            "id": 25,
+            "room": "522",
+            "building": 13,
+            "assigned": true,
+            "users": ["001", "002"]
+        },
+        {
+            "id": 26,
+            "room": "523",
+            "building": 13,
+            "assigned": true,
+            "users": ["001", "002"]
+        },
+        {
+            "id": 27,
+            "room": "524",
+            "building": 13,
+            "assigned": false,
+            "users": []
+        },
+        {
+            "id": 28,
+            "room": "525",
+            "building": 13,
+            "assigned": false,
+            "users": []
+        }
+    ]
+}

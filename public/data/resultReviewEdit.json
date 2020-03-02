@@ -1,0 +1,14 @@
+{
+    "status": "success",
+    "details": [
+        {"id": 1, "name": "窗", "total": 4, "current": 2},
+        {"id": 2, "name": "门", "total": 3, "current": 3},
+        {"id": 3, "name": "床铺", "total": 30, "current": 24},
+        {"id": 4, "name": "地板", "total": 10, "current": 7},
+        {"id": 5, "name": "桌面", "total": 12, "current": 10},
+        {"id": 6, "name": "鞋子摆放", "total": 5, "current": 4},
+        {"id": 7, "name": "书架", "total": 18, "current": 15},
+        {"id": 8, "name": "天花板", "total": 2, "current": 2},
+        {"id": 9, "name": "侧书架", "total": 16, "current": 13}
+    ]
+}

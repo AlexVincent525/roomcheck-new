@@ -1,0 +1,34 @@
+{
+    "status": "success",
+    "total": 4,
+    "rows": [
+        {
+            "id": 1,
+            "name": "001",
+            "number": "201721031001",
+            "assigned_to_this": true,
+            "assigned_level_two_check_set": [21, 22]
+        },
+        {
+            "id": 2,
+            "name": "002",
+            "number": "201721031002",
+            "assigned_to_this": true,
+            "assigned_level_two_check_set": [21, 22]
+        },
+        {
+            "id": 3,
+            "name": "003",
+            "number": "201721031003",
+            "assigned_to_this": false,
+            "assigned_level_two_check_set": [23, 24]
+        },
+        {
+            "id": 4,
+            "name": "004",
+            "number": "201721031004",
+            "assigned_to_this": false,
+            "assigned_level_two_check_set": [23, 24]
+        }
+    ]
+}

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <title>楼栋管理 - 集大水院自律会</title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="author" content="av@alexv525.com">
+        <meta name="description" content="宿舍成绩后台管理">
+        <meta name="keywords" content="宿舍成绩,集大,水院,自律会">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <!-- Chrome Theme Color -->
+        <meta name="theme-color" content="#367fa9">
+        <!-- Start Favicon Part -->
+        <meta name="msapplication-TileImage" content="/favicon.ico">
+        <link rel="bookmark" href="/favicon.ico">
+        <link rel="shortcut icon" href="/favicon.ico">
+        <link rel="icon" href="/favicon.ico" sizes="32x32">
+        <link rel="icon" href="/favicon.ico" sizes="192x192">
+        <link rel="apple-touch-icon-precomposed" href="/favicon.ico">
+        <!-- End Favicon Part -->
+        <!-- Start Public StyleSheet -->
+        <link rel="stylesheet" href="/assets/admin/vendor/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/admin/vendor/font-awesome/font-awesome.min.css">
+        <link rel="stylesheet" href="/assets/admin/vendor/pace/pace.min.css">
+        <link rel="stylesheet" href="/assets/admin/css/AdminLTE.min.css">
+        <link rel="stylesheet" href="/assets/admin/css/skins/_all-skins.min.css">
+        <link rel="stylesheet" href="/assets/admin/vendor/sweetalert2/sweetalert2.min.css">
+        <!-- End Public StyleSheet -->
+        <!-- Start Custom StyleSheet -->
+        <link rel="stylesheet" href="/assets/admin/vendor/bootstrap-table/bootstrap-table.min.css">
+        <!-- End Custom StyleSheet -->
+        <link rel="stylesheet" href="/assets/admin/css/main.css">
+        <!-- CSRF Token -->
+        <meta name="csrf_token" content="{{ csrf_token() }}">
+    </head>
+    <body class="hold-transition skin-blue sidebar-mini">
+        <div class="wrapper">
+            <header class="main-header">
+                <a href="/admin.html" class="logo">
+                    <span class="logo-mini">
+                        <img src="/favicon.ico" width="30">
+                    </span>
+                    <span class="logo-lg">
+                        <b>宿舍成绩</b> 后台管理
+                    </span>
+                </a>
+                <nav class="navbar navbar-static-top">
+                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                        <span class="sr-only"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <span class="navbar-broadcast">通知</span>
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown user user-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-user"></i>
+                                    <span class="hidden-xs username">username</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="user-header">
+                                        <i class="fa fa-user fa-5x"></i>
+                                        <p class="username">username</p>
+                                    </li>
+                                    <li class="user-footer">
+                                        <div class="pull-left">
+                                            <a href="/pages/user/changeProfile.html" class="btn btn-default btn-flat" tabindex="0">更改信息</a>
+                                        </div>
+                                        <div class="pull-right">
+                                            <a id="logout" class="btn btn-default btn-flat">注销</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <aside class="main-sidebar">
+                <section class="sidebar">
+                    <ul class="sidebar-menu">
+                        <li class="header">导览</li>
+                        <li class="active">
+                            <a href="/admin.html">
+                                <i class="fa fa-circle-o" aria-hidden="true"></i>
+                                <span>总览</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/pages/entering/enteringResult.html">
+                                <i class="fa fa-pencil-square" aria-hidden="true"></i>
+                                <span>宿舍检查</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                                <span>检查管理</span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a href="/pages/check/createCheck.html">
+                                        <i class="fa fa-bullhorn" aria-hidden="true"></i>
+                                        <span>检查创建</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/pages/check/checkAssign.html">
+                                        <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
+                                        <span>检查分配</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="active">
+                                <i class="fa fa-building" aria-hidden="true"></i>
+                                <span>基础管理</span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a href="/pages/basic/roomManage.html">
+                                        <i class="fa fa-home" aria-hidden="true"></i>
+                                        <span>宿舍管理</span>
+                                    </a>
+                                </li>
+                                <li class="active">
+                                    <a href="/pages/basic/buildingManage.html">
+                                        <i class="fa fa-building-o" aria-hidden="true"></i>
+                                        <span>楼栋管理</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/pages/basic/itemManage.html">
+                                        <i class="fa fa-cubes" aria-hidden="true"></i>
+                                        <span>项目管理</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-table" aria-hidden="true"></i>
+                                <span>成绩管理</span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a href="/pages/result/resultReview.html">
+                                        <i class="fa fa-balance-scale" aria-hidden="true"></i>
+                                        <span>成绩审核</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/pages/result/resultOperate.html">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                        <span>成绩处理</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <span>用户管理</span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a href="/pages/user/memberManage.html">
+                                        <i class="fa fa-users" aria-hidden="true"></i>
+                                        <span>干事管理</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/pages/user/viceLeaderManage.html">
+                                        <i class="fa fa-users" aria-hidden="true"></i>
+                                        <span>副部管理</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/pages/user/changeProfile.html">
+                                        <i class="fa fa-key" aria-hidden="true"></i>
+                                        <span>信息修改</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/pages/sys/sysAction.html">
+                                <i class="fa fa-gear" aria-hidden="true"></i>
+                                <span>系统操作</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+            </aside>
+            <div class="content-wrapper" id="main">
+                <section class="content-header">
+                    <h1>
+                        楼栋管理
+                        <small>Manage Buildings.</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="/admin.html" class="forward"><i class="fa fa-dashboard" aria-hidden="true"></i> 主页</a></li>
+                        <li>基础管理</li>
+                        <li class="active">楼栋管理</li>
+                    </ol>
+                </section>
+                <section class="content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="box box-noborder">
+                                <div id="buildingTable-toolbar" class="bs-table-toolbar">
+                                    <div class="columns-left btn-group pull-left">
+                                        <button class="btn btn-info" name="add" aria-label="add" title="添加宿舍" data-toggle="modal" data-target="#buildingModal">
+                                            <i class="fa fa-plus" aria-hidden="true"></i> 添加
+                                        </button>
+                                        <button class="btn btn-success" name="active" aria-label="active" title="激活宿舍" disabled="disabled">
+                                            <i class="fa fa-check-square-o" aria-hidden="true"></i> 激活
+                                        </button>
+                                        <!--<button class="btn btn-danger" name="delete" aria-label="delete" title="删除宿舍" disabled="disabled">
+                                            <i class="fa fa-trash" aria-hidden="true"></i> 删除
+                                        </button>-->
+                                    </div>
+                                </div>
+                                <table id="buildingTable"
+                                       data-cache="false"
+                                       data-pagination="true"
+                                       data-pagination-loop="false"
+                                       data-pagination-h-align="right"
+                                       data-pagination-detail-h-align="left"
+                                       data-show-refresh="true"
+                                       data-side-pagination="server"
+                                       data-striped="true"
+                                       data-toolbar="#buildingTable-toolbar"
+                                       data-unique-id="id"
+                                >
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="modal fade" id="buildingModal" tabindex="-1" data-keyboard="true" aria-labelledby="buildingModal" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="关闭">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                <h4 class="modal-title text-center" id="buildingModal-title">楼栋信息</h4>
+                            </div>
+                            <div class="modal-body" id="buildingModal-body">
+                                <div class="form-group">
+                                    <label for="buildingName" class="required">楼栋名称</label>
+                                    <input type="text" class="form-control require" id="buildingName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="buildingItems" class="required">楼栋项目</label>
+                                    <div id="buildingItems" class="building-add-items-form">
+                                        <div class="input-group" data-index="0">
+                                            <div class="input-group-btn">
+                                                <button type="button" class="btn btn-danger" data-for="item-delete" disabled>
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-default">项目名称</button>
+                                            </div>
+                                            <input type="text"
+                                                   title="项目名称"
+                                                   name="buildingItemName"
+                                                   class="form-control text-center require"
+                                            />
+                                            <div class="input-group-btn">
+                                                <button type="button" class="btn btn-default no-border-radius">满分</button>
+                                            </div>
+                                            <select name="buildingItemFullScore"
+                                                    title="满分"
+                                                    class="form-control">
+                                                <option value="0" selected>0</option>
+                                                <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option>
+                                                <option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option>
+                                                <option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option>
+                                                <option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option>
+                                                <option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer" id="buildingModal-footer">
+                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-success pull-right" data-for="addSave">保存</button>
+                                <button type="button" class="btn btn-info pull-right" data-for="addItem">添加项目</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="main-footer"></footer>
+
+            <aside class="control-sidebar control-sidebar-dark">
+                <div class="tab-content">
+                    <div id="control-sidebar-theme-demo-options-tab" class="tab-pane active">
+                        <h4 class="control-sidebar-heading">更改配色
+                            <small>Change Your Skin.</small>
+                        </h4>
+                        <ul class="list-unstyled clearfix">
+                            <li>
+                                <a data-skin="skin-blue" class="clearfix full-opacity-hover">
+                                    <span style="background: #367fa9;"></span>
+                                    <span class="bg-light-blue"></span>
+                                    <span style="background: #222d32;"></span>
+                                    <span style="background: #f4f5f7;"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-skin="skin-black" class="clearfix full-opacity-hover">
+                                    <span style="background: #fefefe;"></span>
+                                    <span style="background: #fefefe;"></span>
+                                    <span style="background: #222;"></span>
+                                    <span style="background: #f4f5f7;"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-skin="skin-purple" class="clearfix full-opacity-hover">
+                                    <span class="bg-purple-active"></span>
+                                    <span class="bg-purple"></span>
+                                    <span style="background: #222d32;"></span>
+                                    <span style="background: #f4f5f7;"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-skin="skin-green" class="clearfix full-opacity-hover">
+                                    <span class="bg-green-active"></span>
+                                    <span class="bg-green"></span>
+                                    <span style="background: #222d32;"></span>
+                                    <span style="background: #f4f5f7;"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-skin="skin-red" class="clearfix full-opacity-hover">
+                                    <span class="bg-red-active"></span>
+                                    <span class="bg-red"></span>
+                                    <span style="background: #222d32;"></span>
+                                    <span style="background: #f4f5f7;"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-skin="skin-yellow" class="clearfix full-opacity-hover">
+                                    <span class="bg-yellow-active"></span>
+                                    <span class="bg-yellow"></span>
+                                    <span style="background: #222d32;"></span>
+                                    <span style="background: #f4f5f7;"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-skin="skin-blue-light" class="clearfix full-opacity-hover">
+                                    <span style="background: #367fa9;"></span>
+                                    <span class="bg-light-blue"></span>
+                                    <span style="background: #f9fafc;"></span>
+                                    <span style="background: #f4f5f7;"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-skin="skin-black-light" class="clearfix full-opacity-hover">
+                                    <span style="background: #fefefe;"></span>
+                                    <span style="background: #fefefe;"></span>
+                                    <span style="background: #f9fafc;"></span>
+                                    <span style="background: #f4f5f7;"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-skin="skin-purple-light" class="clearfix full-opacity-hover">
+                                    <span class="bg-purple-active"></span>
+                                    <span class="bg-purple"></span>
+                                    <span style="background: #f9fafc;"></span>
+                                    <span style="background: #f4f5f7;"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-skin="skin-green-light" class="clearfix full-opacity-hover">
+                                    <span class="bg-green-active"></span>
+                                    <span class="bg-green"></span>
+                                    <span style="background: #f9fafc;"></span>
+                                    <span style="background: #f4f5f7;"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-skin="skin-red-light" class="clearfix full-opacity-hover">
+                                    <span class="bg-red-active"></span>
+                                    <span class="bg-red" ></span>
+                                    <span style="background: #f9fafc;"></span>
+                                    <span style="background: #f4f5f7;"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-skin="skin-yellow-light" class="clearfix full-opacity-hover">
+                                    <span class="bg-yellow-active"></span>
+                                    <span class="bg-yellow"></span>
+                                    <span style="background: #f9fafc;"></span>
+                                    <span style="background: #f4f5f7;"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+            <div class="control-sidebar-bg"></div>
+        </div>
+        <!-- Start Public Script -->
+        <script src="/assets/admin/js/uaJudge.js"></script>
+        <script src="/assets/admin/vendor/jQuery/jquery-3.2.1.min.js"></script>
+        <script src="/assets/admin/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/assets/admin/vendor/pace/pace.min.js"></script>
+        <script src="/assets/admin/vendor/sweetalert2/sweetalert2.js"></script>
+        <script src="/assets/admin/js/app.js"></script>
+        <script src="/assets/admin/js/common.js"></script>
+        <!-- End Public Script -->
+
+        <!-- Start Custom Script -->
+        <script src="/assets/admin/vendor/bootstrap-table/bootstrap-table.js"></script>
+        <script src="/assets/admin/vendor/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+        <script src="/pages/basic/buildingManage.js"></script>
+        <!-- End Custom Script -->
+        
+    </body>
+</html>

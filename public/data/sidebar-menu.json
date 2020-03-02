@@ -1,0 +1,158 @@
+{
+    "status": "success",
+    "data": [
+        {
+            "id": 1,
+            "text": "总览",
+            "icon": "circle-o",
+            "href": "{{ route('home-page') }}",
+            "class": "{{ active_class(if_route('home-page')) }}",
+            "parent": 0,
+            "show": true
+        },
+        {
+            "id": 2,
+            "text": "宿舍检查",
+            "icon": "pencil-square",
+            "href": "/pages/entering/enteringResult.html",
+            "class": "",
+            "parent": 0,
+            "show": true
+        },
+        {
+            "id": 3,
+            "text": "检查管理",
+            "icon": "check-square-o",
+            "href": "#",
+            "class": "",
+            "parent": 0,
+            "show": true
+        },
+        {
+            "id": 4,
+            "text": "检查创建",
+            "icon": "bullhorn",
+            "href": "/pages/check/createCheck.html",
+            "class": "",
+            "parent": 3,
+            "show": true
+        },
+        {
+            "id": 5,
+            "text": "检查分配",
+            "icon": "calendar-plus-o",
+            "href": "/pages/check/checkAssign.html",
+            "class": "",
+            "parent": 3,
+            "show": true
+        },
+        {
+            "id": 6,
+            "text": "宿舍管理",
+            "icon": "building",
+            "href": "#",
+            "class": "",
+            "parent": 0,
+            "show": true
+        },
+        {
+            "id": 7,
+            "text": "宿舍管理",
+            "icon": "home",
+            "href": "/pages/room/roomManage.html",
+            "class": "",
+            "parent": 6,
+            "show": true
+        },
+        {
+            "id": 8,
+            "text": "楼栋管理",
+            "icon": "building-o",
+            "href": "/pages/room/buildingManage.html",
+            "class": "",
+            "parent": 6,
+            "show": true
+        },
+        {
+            "id": 9,
+            "text": "项目管理",
+            "icon": "cubes",
+            "href": "/pages/room/itemManage.html",
+            "class": "",
+            "parent": 6,
+            "show": true
+        },
+        {
+            "id": 10,
+            "text": "成绩管理",
+            "icon": "table",
+            "href": "#",
+            "class": "",
+            "parent": 0,
+            "show": true
+        },
+        {
+            "id": 11,
+            "text": "成绩审核",
+            "icon": "balance-scale",
+            "href": "/pages/result/resultReview.html",
+            "class": "",
+            "parent": 10,
+            "show": true
+        },
+        {
+            "id": 12,
+            "text": "成绩处理",
+            "icon": "edit",
+            "href": "/pages/result/resultOperate.html",
+            "class": "",
+            "parent": 10,
+            "show": true
+        },
+        {
+            "id": 13,
+            "text": "用户管理",
+            "icon": "user",
+            "href": "#",
+            "class": "",
+            "parent": 0,
+            "show": true
+        },
+        {
+            "id": 14,
+            "text": "干事管理",
+            "icon": "users",
+            "href": "/pages/user/memberManage.html",
+            "class": "",
+            "parent": 13,
+            "show": true
+        },
+        {
+            "id": 15,
+            "text": "副部管理",
+            "icon": "users",
+            "href": "/pages/user/viceLeaderManage.html",
+            "class": "",
+            "parent": 13,
+            "show": true
+        },
+        {
+            "id": 16,
+            "text": "信息修改",
+            "icon": "key",
+            "href": "/pages/user/changeProfile.html",
+            "class": "",
+            "parent": 13,
+            "show": true
+        },
+        {
+            "id": 17,
+            "text": "系统操作",
+            "icon": "gear",
+            "href": "/pages/sys/sysAction.html",
+            "class": "",
+            "parent": 0,
+            "show": true
+        }
+    ]
+}
